@@ -3,7 +3,7 @@
 FROM docker.io/python:3.12.3
 
 # Install packages that are required. 
-RUN pip install Django==6.0.1 psutil
+RUN pip install Django==6.0.1 psutil==7.2.2
 
 # Copy the Python code into the container
 COPY djangotutorial /app
