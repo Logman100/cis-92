@@ -8,9 +8,6 @@ RUN pip install Django==6.0.1 psutil==7.2.2
 # Create a user 
 RUN useradd -d /app -M django 
 
-# Switch to the new user
-USER django 
-
 # Copy the Python code into the container (as the new user)
 COPY --chown=django:django djangotutorial /app
 
@@ -24,6 +21,12 @@ ENV PORT=8080
 ENV DJANGO_SUPERUSER_NAME="test"
 ENV DJANGO_SUPERUSER_EMAIL="test@test.test"
 ENV DJANGO_SUPERUSER_PASSWORD="test"
+
+# Create the data directory
+RUN mkdir $DATA_DIR && chown django:django $DATA_DIR 
+
+# Switch to the new user
+USER django 
 
 # Set the working directory
 WORKDIR /app 
