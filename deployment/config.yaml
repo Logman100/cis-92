@@ -1,0 +1,10 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: mysite-config
+data:
+    PORT: "8080" 
+    STUDENT_NAME: "Log Dog"
+    SITE_NAME: "www.loganroggeamos.com"
+    DATA_DIR: "/data"
+    DEBUG: "1"
