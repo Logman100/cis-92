@@ -6,8 +6,8 @@ metadata:
     function: app
 spec:
   containers:
-    - name: dokuwiki-container
-      image: dokuwiki/dokuwiki:stable
+    - name: mysite
+      image: gcr.io/cis-92-489201/myapp:latest
       ports:
         - containerPort: 8080
       resources:
