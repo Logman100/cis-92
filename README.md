@@ -71,8 +71,12 @@ The following environment variables are defined via `config.yaml`, `secret.yaml`
    ```bash
    kubectl get svc mysite
    ```
+7. Or Deploy entire project from file;
+   ```bash
+   kubectl apply -f deployment/
+   ```
 
-7. Open the app in your browser using the external IP.
+8. Open the app in your browser using the external IP.
 
 ---
 
@@ -101,6 +105,10 @@ The following environment variables are defined via `config.yaml`, `secret.yaml`
 5. Delete the Secret:
    ```bash
    kubectl delete -f secret.yaml
+   ```
+6. Or, Delete all at once:
+   ```bash
+   kubectl delete -f deployment/
    ```
 
 ---
