@@ -24,3 +24,12 @@ spec:
             name: mysite-config
         - secretRef:
             name: mysite-secret
+      volumeMounts:
+        - name: db
+          mountPath: /data
+  volumes:
+    - name: db
+      persistentVolumeClaim:
+        claimName: mysite-data
+  securityContext:
+    fsGroup: 1000
