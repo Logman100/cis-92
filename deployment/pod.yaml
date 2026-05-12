@@ -7,7 +7,7 @@ metadata:
 spec:
   containers:
     - name: mysite
-      image: ghcr.io/logman100/cis-92:milestone-5.0
+      image: ghcr.io/logman100/cis-92@sha256:19e53f681ef464bb7222e5fa572239669d5f729af53a3b7f50ba8e67057783d8
       ports:
         - containerPort: 8080
       resources:
