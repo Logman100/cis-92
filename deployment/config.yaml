@@ -8,3 +8,5 @@ data:
     SITE_NAME: "www.loganroggeamos.com"
     DATA_DIR: "/data"
     DEBUG: "1"
+    POSTGRES_DB: "mysite"
+    POSTGRES_HOSTNAME: "postgres-postgresql"
