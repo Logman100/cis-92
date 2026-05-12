@@ -33,5 +33,12 @@ spec:
               name: mysite-config
           - secretRef:
               name: mysite-secret
+        livenessProbe:
+          httpGet:
+            path: /
+            port: 8080
+            httpHeaders:
+            - name: host
+              value: localhost              
       securityContext:
         fsGroup: 1000
