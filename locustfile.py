@@ -13,7 +13,7 @@ class HelloWorldUser(HttpUser):
         csrftoken = response.cookies['csrftoken']
         self.client.post('/admin/login/?next=/admin/',
             {
-            'username': os.environ.get('LOCUST_USER', 'Logan'),
-            'password': os.environ.get('LOCUST_PASSWORD', 'Logan')
+            'username': os.environ.get('LOCUST_USER', 'student'),
+            'password': os.environ.get('LOCUST_PASSWORD', 'student')
             },
             headers={'X-CSRFToken': csrftoken})

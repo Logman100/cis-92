@@ -1,0 +1,37 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: django
+  labels:
+    function: app
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      function: app
+  template:
+    metadata:
+      labels:
+        function: app
+    spec:
+      containers:
+      - name: django
+        image: ghcr.io/logman100/cis-92@sha256:19e53f681ef464bb7222e5fa572239669d5f729af53a3b7f50ba8e67057783d8
+        ports:
+          - containerPort: 8080
+        resources:
+          requests:
+            cpu: 1000m
+            memory: 1024Mi
+            ephemeral-storage: 10Mi
+          limits:
+            cpu: 1000m
+            memory: 1024Mi
+            ephemeral-storage: 10Mi
+        envFrom:
+          - configMapRef:
+              name: mysite-config
+          - secretRef:
+              name: mysite-secret
+      securityContext:
+        fsGroup: 1000
