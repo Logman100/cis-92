@@ -118,3 +118,96 @@ The following environment variables are defined via `config.yaml`, `secret.yaml`
 - The app runs on port **8080** internally and is exposed on port **80**
 - Persistent data is stored in `/data`
 - Debug mode is enabled (`DEBUG=1`) and should be disabled in production
+
+## 11. Postgres
+
+The application uses a PostgreSQL database installed with Helm using the Bitnami PostgreSQL chart. The database configuration is stored in `values-postgres.yaml`.
+
+### Postgres Configuration Settings
+
+| Setting | Value | Description |
+|--------|-------|-------------|
+| `auth.username` | `mysiteuser` | Username used to log in to the Postgres database |
+| `auth.password` | `this-is-a-bad-password` | Password used to log in to the Postgres database |
+| `auth.database` | `mysite` | Name of the Postgres database |
+| `primary.resources.requests.memory` | `512Mi` | Minimum memory requested for the Postgres pod |
+| `primary.resources.requests.cpu` | `500m` | Minimum CPU requested for the Postgres pod |
+| `primary.resources.requests.ephemeral-storage` | `100Mi` | Minimum temporary storage requested for the Postgres pod |
+| `primary.resources.limits.memory` | `512Mi` | Maximum memory allowed for the Postgres pod |
+| `primary.resources.limits.cpu` | `500m` | Maximum CPU allowed for the Postgres pod |
+| `primary.resources.limits.ephemeral-storage` | `100Mi` | Maximum temporary storage allowed for the Postgres pod |
+
+> Note: This password is for lab/testing purposes only and should not be used in a real production environment.
+
+---
+
+## Updated Deployment Steps
+
+Before deploying the Django application, install the Postgres database with Helm.
+
+1. Install Postgres using Helm and the `values-postgres.yaml` file:
+
+```bash
+   helm install postgres oci://registry-1.docker.io/bitnamicharts/postgresql --values values-postgres.yaml
+```
+   Then check that the Postgres resources were created:
+
+```bash
+kubectl get all
+```
+
+Check that the Postgres PersistentVolumeClaim was created:
+
+```bash
+kubectl get pvc
+```
+
+After Postgres is running, deploy the application:
+
+```bash
+kubectl apply -f deployment/
+```
+
+Check that the application resources are running:
+
+```bash
+kubectl get all
+```
+
+To delete the application
+```bash
+Then check that the Postgres resources were created:
+
+```bash
+kubectl get all
+```
+
+Check that the Postgres PersistentVolumeClaim was created:
+
+```bash
+kubectl get pvc
+```
+
+After Postgres is running, deploy the application:
+
+```bash
+kubectl apply -f deployment/
+```
+
+Check that the application resources are running:
+
+```bash
+kubectl get all
+```
+
+Uninstall the Postgres helm chart
+
+```bash
+helm uninstall postgres
+```
+
+To fully remove the stored Postgres database data, delete the PersistentVolumeClaim:
+
+```bash
+kubectl delete pvc/data-postgres-postgresql-0
+```
